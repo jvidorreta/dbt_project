@@ -1,6 +1,284 @@
 version: 2
 
-models: 
-  - name: stg_CUSTOMER
+models:
+  - name: stg_DIM_CUSTOMER
+    description: '{{ doc("DIM_CUSTOMER")}}'
     config:
+      transient: false
       materialized: table
+      schema: '{{ var("SH_LND") }}'
+      alias: DIM_CUSTOMER
+      unique_key: DIM_CUSTOMER
+      query_tag: dbt_stg_DIM_CUSTOMER
+    meta:
+      primary key:
+        - C_ACCTBAL
+        - C_ADDRESS
+        - C_CUSTKEY
+        - C_NAME
+        - C_NATIONKEY
+        - C_PHONE
+    columns:
+      - name: C_ACCTBAL
+        description: Customer account balance
+        tests: 
+          - not_null
+      - name: C_ADDRESS
+        description: Customer adress
+        tests: 
+          - not_null
+      - name: PK_DIM_CUSTOMER
+        tests: 
+          - not_null
+          - unique
+      - name: C_MKTSEGMENT
+        description: Customer Market segment
+      - name: C_COMMENT
+        description: Customer Comment
+
+  - name: stg_DIM_LINEITEM
+    description: '{{ doc("DIM_LINEITEM")}}'
+    config:
+      transient: false
+      materialized: table
+      schema: '{{ var("SH_LND") }}'
+      alias: DIM_LINEITEM
+      unique_key: DIM_LINEITEM
+      query_tag: dbt_stg_DIM_LINEITEM
+    meta:
+      primary key:
+        - C_ACCTBAL
+        - C_ADDRESS
+        - C_CUSTKEY
+        - C_NAME
+        - C_NATIONKEY
+        - C_PHONE
+    columns:
+      - name: C_ACCTBAL
+        description: Customer account balance
+        tests: 
+          - not_null
+      - name: C_ADDRESS
+        description: Customer adress
+        tests: 
+          - not_null
+      - name: PK_DIM_CUSTOMER
+        tests: 
+          - not_null
+          - unique
+      - name: C_MKTSEGMENT
+        description: Customer Market segment
+      - name: C_COMMENT
+        description: Customer Comment
+
+  - name: stg_DIM_NATION
+    description: '{{ doc("DIM_NATION")}}'
+    config:
+      transient: false
+      materialized: table
+      schema: '{{ var("SH_LND") }}'
+      alias: DIM_NATION
+      unique_key: DIM_NATION
+      query_tag: dbt_stg_DIM_NATION
+    meta:
+      primary key:
+        - C_ACCTBAL
+        - C_ADDRESS
+        - C_CUSTKEY
+        - C_NAME
+        - C_NATIONKEY
+        - C_PHONE
+    columns:
+      - name: C_ACCTBAL
+        description: Customer account balance
+        tests: 
+          - not_null
+      - name: C_ADDRESS
+        description: Customer adress
+        tests: 
+          - not_null
+      - name: PK_DIM_CUSTOMER
+        tests: 
+          - not_null
+          - unique
+      - name: C_MKTSEGMENT
+        description: Customer Market segment
+      - name: C_COMMENT
+        description: Customer Comment 
+
+  - name: stg_DIM_PART
+    description: '{{ doc("DIM_PART")}}'
+    config:
+      transient: false
+      materialized: table
+      schema: '{{ var("SH_LND") }}'
+      alias: DIM_PART
+      unique_key: DIM_PART
+      query_tag: dbt_stg_DIM_PART
+    meta:
+      primary key:
+        - C_ACCTBAL
+        - C_ADDRESS
+        - C_CUSTKEY
+        - C_NAME
+        - C_NATIONKEY
+        - C_PHONE
+    columns:
+      - name: C_ACCTBAL
+        description: Customer account balance
+        tests: 
+          - not_null
+      - name: C_ADDRESS
+        description: Customer adress
+        tests: 
+          - not_null
+      - name: PK_DIM_CUSTOMER
+        tests: 
+          - not_null
+          - unique
+      - name: C_MKTSEGMENT
+        description: Customer Market segment
+      - name: C_COMMENT
+        description: Customer Comment     
+
+  - name: stg_DIM_PARTSUPP
+    description: '{{ doc("DIM_PARTSUPP")}}'
+    config:
+      transient: false
+      materialized: table
+      schema: '{{ var("SH_LND") }}'
+      alias: DIM_PARTSUPP
+      unique_key: DIM_PARTSUPP
+      query_tag: dbt_stg_DIM_PARTSUPP
+    meta:
+      primary key:
+        - C_ACCTBAL
+        - C_ADDRESS
+        - C_CUSTKEY
+        - C_NAME
+        - C_NATIONKEY
+        - C_PHONE
+    columns:
+      - name: C_ACCTBAL
+        description: Customer account balance
+        tests: 
+          - not_null
+      - name: C_ADDRESS
+        description: Customer adress
+        tests: 
+          - not_null
+      - name: PK_DIM_CUSTOMER
+        tests: 
+          - not_null
+          - unique
+      - name: C_MKTSEGMENT
+        description: Customer Market segment
+      - name: C_COMMENT
+        description: Customer Comment
+
+  - name: stg_DIM_REGION
+    description: '{{ doc("DIM_REGION")}}'
+    config:
+      transient: false
+      materialized: table
+      schema: '{{ var("SH_LND") }}'
+      alias: DIM_REGION
+      unique_key: DIM_REGION
+      query_tag: dbt_stg_DIM_REGION
+    meta:
+      primary key:
+        - C_ACCTBAL
+        - C_ADDRESS
+        - C_CUSTKEY
+        - C_NAME
+        - C_NATIONKEY
+        - C_PHONE
+    columns:
+      - name: C_ACCTBAL
+        description: Customer account balance
+        tests: 
+          - not_null
+      - name: C_ADDRESS
+        description: Customer adress
+        tests: 
+          - not_null
+      - name: PK_DIM_CUSTOMER
+        tests: 
+          - not_null
+          - unique
+      - name: C_MKTSEGMENT
+        description: Customer Market segment
+      - name: C_COMMENT
+        description: Customer Comment 
+
+  - name: stg_DIM_SUPPLIER
+    description: '{{ doc("DIM_SUPPLIER")}}'
+    config:
+      transient: false
+      materialized: table
+      schema: '{{ var("SH_LND") }}'
+      alias: DIM_SUPPLIER
+      unique_key: DIM_SUPPLIER
+      query_tag: dbt_stg_DIM_SUPPLIER
+    meta:
+      primary key:
+        - C_ACCTBAL
+        - C_ADDRESS
+        - C_CUSTKEY
+        - C_NAME
+        - C_NATIONKEY
+        - C_PHONE
+    columns:
+      - name: C_ACCTBAL
+        description: Customer account balance
+        tests: 
+          - not_null
+      - name: C_ADDRESS
+        description: Customer adress
+        tests: 
+          - not_null
+      - name: PK_DIM_CUSTOMER
+        tests: 
+          - not_null
+          - unique
+      - name: C_MKTSEGMENT
+        description: Customer Market segment
+      - name: C_COMMENT
+        description: Customer Comment   
+
+  - name: stg_FACT_ORDERS
+    description: '{{ doc("FACT_ORDERS")}}'
+    config:
+      transient: false
+      materialized: incremental
+      schema: '{{ var("SH_LND") }}'
+      alias: FACT_ORDERS
+      unique_key: FACT_ORDERS
+      query_tag: dbt_stg_FACT_ORDERS
+    meta:
+      primary key:
+        - C_ACCTBAL
+        - C_ADDRESS
+        - C_CUSTKEY
+        - C_NAME
+        - C_NATIONKEY
+        - C_PHONE
+    columns:
+      - name: C_ACCTBAL
+        description: Customer account balance
+        tests: 
+          - not_null
+      - name: C_ADDRESS
+        description: Customer adress
+        tests: 
+          - not_null
+      - name: PK_DIM_CUSTOMER
+        tests: 
+          - not_null
+          - unique
+      - name: C_MKTSEGMENT
+        description: Customer Market segment
+      - name: C_COMMENT
+        description: Customer Comment                 
+
+

@@ -1,4 +1,4 @@
-{% docs stg_CUSTOMER %}
+{% docs DIM_CUSTOMER %}
 
 
 # Extraction type:

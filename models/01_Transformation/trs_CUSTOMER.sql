@@ -3,15 +3,15 @@ with
 -- ######### SOURCES ########
 
 STG_CUSTOMERS as (
-    select * from {{ ref('stg_CUSTOMER') }}
+    select * from {{ ref('stg_DIM_CUSTOMER') }}
 ),
 
 STG_REGION as (
-    select * from {{ ref('stg_REGION') }}
+    select * from {{ ref('stg_DIM_REGION') }}
 ),
 
 STG_NATION as (
-    select * from {{ ref('stg_NATION') }}
+    select * from {{ ref('stg_DIM_NATION') }}
 ),
 
 
