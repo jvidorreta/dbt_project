@@ -2,7 +2,7 @@ with
 
 --###############  SOURCES  ####################
 STG_CUSTOMERS as (
-select * from {{ source('TPCH_SF1', 'LINEITEM') }}
+select * from {{ source('LND', 'DIM_LINEITEM') }}
 
 ),
 
