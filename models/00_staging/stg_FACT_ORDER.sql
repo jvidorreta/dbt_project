@@ -14,7 +14,7 @@ select * from {{ source('LND', 'FACT_ORDERS') }}
 FINAL as (
 
 select * 
-        ,{{ dbt_utils.surrogate_key(['O_ORDERKEY','O_CUSTKEY','O_ORDERDATE','O_ORDERSTATUS']) }} as PK_DIM_CUSTOMER
+        ,{{ dbt_utils.surrogate_key(['O_ORDERKEY','O_CUSTKEY','O_ORDERDATE','O_ORDERSTATUS','O_ORDERPRIORITY']) }} as PK_FACT_ORDER
 from STG_FACT_ORDERS
 )
 

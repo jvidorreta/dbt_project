@@ -4,8 +4,12 @@ models:
   - name: stg_DIM_CUSTOMER
     description: '{{ doc("DIM_CUSTOMER")}}'
     config:
+      transient: false
       materialized: table
       schema: '{{ var("SH_STG") }}'
+      alias: DIM_CUSTOMER
+      unique_key: DIM_CUSTOMER
+      query_tag: dbt_stg_DIM_CUSTOMER
     meta:
       primary key:
         - C_CUSTKEY
@@ -259,7 +263,7 @@ models:
         description: Supplier Name
         tests: 
           - not_null
-      - name: S_ADRESS
+      - name: S_ADDRESS
         description: Supplier Adress
         tests: 
           - not_null    
@@ -277,15 +281,15 @@ models:
         description: Supplier Account balance  
         
 
-  - name: stg_FACT_ORDERS
-    description: '{{ doc("FACT_ORDERS")}}'
+  - name: stg_FACT_ORDER
+    description: '{{ doc("FACT_ORDER")}}'
     config:
       transient: false
       materialized: incremental
       schema: '{{ var("SH_STG") }}'
-      alias: FACT_ORDERS
-      unique_key: FACT_ORDERS
-      query_tag: dbt_stg_FACT_ORDERS
+      alias: FACT_ORDER
+      unique_key: FACT_ORDER
+      query_tag: dbt_stg_FACT_ORDER
     meta:
       primary key:
         - O_ORDERKEY
@@ -308,7 +312,7 @@ models:
       - name: O_ORDERSTATUS
         description: Order Status
         tests: 
-          - not_null             
+          - not_null                     
       - name: PK_FACT_ORDER
         tests: 
           - not_null
@@ -322,6 +326,7 @@ models:
       - name: O_COMMENT
         description: Order Comment
       - name: O_ORDERPRIORITY
-        description: Order priority                   
+        description: Order priority
+                           
 
 

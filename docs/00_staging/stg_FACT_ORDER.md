@@ -1,4 +1,4 @@
-{% docs FACT_ORDERS %}
+{% docs FACT_ORDER %}
 
 
 # Extraction type:
