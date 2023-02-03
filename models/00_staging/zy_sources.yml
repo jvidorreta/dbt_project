@@ -2,6 +2,7 @@ version: 2
 sources:
 #Schema environment
   - name: LND
+    database: SNOWFLAKE_SAMPLE_DATA
     schema: '{{ var("SH_LND") }}'
 #Defined sources at schema environment - desde cuando no se actualiza el dato(no se puede usar porque no hay columna de fecha de extracción)
   #  freshness: # default freshness
@@ -11,7 +12,7 @@ sources:
     #loaded_at_field: EXTRACTION_TIMESTAMP
 
     tables:
-      - name: DIM_CUSTOMER              #Como lo reconoce y trata dbt
+      - name: DIM_CUSTOMER             #Como lo reconoce y trata dbt
         identifier: CUSTOMER            #donde apunta snowflake(tiene que coincidir con snowflake)
       - name: DIM_LINEITEM
         identifier: LINEITEM
