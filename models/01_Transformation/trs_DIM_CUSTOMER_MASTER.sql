@@ -18,24 +18,37 @@ STG_NATION as (
 -- ######### TRANSFORMATION ########
 STG_CUSTOMERS_WO_COLUMNS as (
     select
+    C_CUSTKEY 
+    ,C_NAME 
+    ,C_ADDRESS 
+    ,C_NATIONKEY 
+    ,C_MKTSEGMENT 
+    ,C_NAME 
+
+
+from STG_CUSTOMERS    
+),
+
+
+STG_REGION_WO_COLUMNS as (
+    select
     C_CUSTKEY as CUSTOMER_KEY
     ,C_NAME as CUSTOMER_NAME
     ,C_ADDRESS as CUSTOMER_ADDRESS
     ,C_NATIONKEY as CUSTOMER_NATIONKEY
     ,C_MKTSEGMENT as CUSTOMER_MARKETSEGMENT
     ,C_NAME as CUSTOMER_NAME
-    --,{{ dbt_utils.surrogate_key(['VERSION_CODE','YEAR_MONTH' ,'YEAR_MONTH_ORI','ORDER_NUMBER' ,'STATU','EBELP' ,'VGABE','FRGET','NAME_CC','TYPE' ,'ORI','POSID','COSTCENTER_CODE','WAERS_DC']) }} as PK_FACT_PO_STATUS
 
-from STG_CUSTOMERS    
+
+from STG_REGION  
 ),
 
 
 
-
-
-
 FINAL as (
-    select * from STG_CUSTOMERS_WO_COLUMNS
+    select * 
+    ,{{ dbt_utils.surrogate_key(['']) }} as PK_DIM_CUSTOMER
+    from STG_CUSTOMERS_WO_COLUMNS
 )
 
 

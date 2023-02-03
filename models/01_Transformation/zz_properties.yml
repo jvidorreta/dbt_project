@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: trs_DIM_CUSTOMER
+    description: '{{ doc("DIM_CUSTOMER_TRS")}}'
+    config:
+      transient: false
+      materialized: table
+      schema: '{{ var("SH_TRS") }}'
+      alias: DIM_CUSTOMER
+      unique_key: DIM_CUSTOMER
+      query_tag: dbt_trs_DIM_CUSTOMER
+    meta:
+      primary key:
+        - C_CUSTKEY
+        - C_NAME
+    columns:
+      - name: C_CUSTKEY
+        description: Customer account balance
+        tests: 
+          - not_null
+      - name: C_NAME
+        description: Customer adress
+        tests: 
+          - not_null
+      - name: PK_DIM_CUSTOMER
+        tests: 
+          - not_null
+          - unique
+      - name: C_MKTSEGMENT
+        description: Customer Market segment
+      - name: C_COMMENT
+        description: Customer Comment
+      - name: C_ACCTBAL
+      - name: C_ADDRESS 
+      - name: C_NATIONKEY
+      - name: C_PHONE  
