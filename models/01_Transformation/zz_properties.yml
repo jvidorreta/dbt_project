@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: trs_DIM_CUSTOMER
-    description: '{{ doc("DIM_CUSTOMER_TRS")}}'
+  - name: trs_DIM_CUSTOMER_MASTER
+    description: '{{ doc("DIM_CUSTOMER_MASTER")}}'
     config:
       transient: false
       materialized: table
@@ -34,4 +34,42 @@ models:
       - name: C_ACCTBAL
       - name: C_ADDRESS 
       - name: C_NATIONKEY
-      - name: C_PHONE  
+      - name: C_PHONE 
+
+  - name: trs_DIM_LINEITEM
+    description: '{{ doc("DIM_LINEITEM_TRS")}}'
+    config:
+      transient: false
+      materialized: table
+      schema: '{{ var("SH_TRS") }}'
+      alias: DIM_LINEITEM_TRS
+      unique_key: DIM_LINEITEM_TRS
+      query_tag: dbt_trs_DIM_LINEITEM_TRS
+    meta:
+      primary key:
+        - L_ORDERKEY
+        - L_PARTKEY
+    columns:
+      - name: L_ORDERKEY
+        description: Line order key
+        tests: 
+          - not_null
+      - name: L_PARTKEY
+        description: Line Part key
+        tests: 
+          - not_null
+      - name: PK_DIM_LINEITEM_TRS
+        tests: 
+          - not_null
+          - unique
+      - name: L_SUPPKEY
+        description: Customer Market segment
+      - name: L_LINENUMBER
+        description: Customer Comment
+      - name: L_QUANTITY
+      - name: L_EXTENDEDPRICE 
+      - name: L_DISCOUNT
+      - name: L_TAX 
+      - name: FINAL_PRICE 
+      - name: TOTAL_TAX
+      - name: PROFIT    

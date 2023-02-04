@@ -1,3 +1,8 @@
+{{
+    config(
+        database= 'DBT_ACADEMY_PROJECT'
+    )
+}}
 with 
 
 -- ######### SOURCES ########
@@ -15,9 +20,16 @@ STG_LINEITEM_ADD as (
     ,L_QUANTITY
     ,L_EXTENDEDPRICE
     ,L_DISCOUNT
+    ,L_TAX
     ,L_EXTENDEDPRICE * (1- L_DISCOUNT) AS FINAL_PRICE
     ,L_TAX*FINAL_PRICE AS TOTAL_TAX
-   , FINAL_PRICE - TOTAL_TAX AS PROFIT
+    ,FINAL_PRICE - TOTAL_TAX AS PROFIT
+    ,{{ dbt_utils.surrogate_key(['L_ORDERKEY','L_PARTKEY']) }} as PK_DIM_LINEITEM_TRS
+   from STG_LINEITEM
+),
+
+FINAL as (
+    SELECT * FROM STG_LINEITEM_ADD    
 )
 
-SELECT * FROM STG_LINEITEM_ADD
+select * from FINAL
