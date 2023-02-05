@@ -79,4 +79,42 @@ models:
       - name: L_TAX 
       - name: FINAL_PRICE 
       - name: TOTAL_TAX
+
+  - name: trs_DIM_SUPPLIER
+    description: '{{ doc("DIM_SUPPLIER_TRS")}}'
+    config:
+      transient: false
+      materialized: table
+      schema: '{{ var("SH_TRS") }}'
+      alias: DIM_SUPPLIER_TRS
+      unique_key: DIM_SUPPLIER_TRS
+      query_tag: dbt_trs_DIM_SUPPLIER_TRS
+    meta:
+      primary key:
+        - SUPPLIER_KEY
+        - SUPPLIER_NAME
+        - SUPPLIER_ADDRESS
+    columns:
+      - name: SUPPLIER_KEY
+        description: Supplier Key
+        tests: 
+          - not_null
+      - name: SUPPLIER_NAME
+        description: Supplier Name
+        tests: 
+          - not_null
+      - name: SUPPLIER_ADDRESS
+        description: Supplier Adress
+        tests: 
+          - not_null    
+      - name: PK_DIM_SUPPLIER_TRS
+        tests: 
+          - not_null
+          - unique
+      - name: CUSTOMER_PHONE
+        description: Customer Comment
+      - name: NATION
+      - name: REGION 
+      - name: SUPPLIER_PHONE
+      - name: SUPPLIER_ACCOUNT_BALANCE   
     
