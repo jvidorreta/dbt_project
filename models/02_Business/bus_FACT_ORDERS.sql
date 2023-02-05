@@ -1,6 +1,7 @@
 {{
     config(
         database= 'DBT_ACADEMY_PROJECT'
+        ,materialized= 'incremental'
     )
 }}
 with 
@@ -21,3 +22,9 @@ FINAL AS (
 
 -- ######### FINAL ########
 select * from FINAL
+
+{{
+    config(
+        materialized='table'
+    )
+}}
