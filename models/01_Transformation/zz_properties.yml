@@ -1,40 +1,43 @@
 version: 2
 
 models:
-  - name: trs_DIM_CUSTOMER_MASTER
-    description: '{{ doc("DIM_CUSTOMER_MASTER")}}'
+  - name: trs_DIM_CUSTOMER
+    description: '{{ doc("DIM_CUSTOMER_TRS")}}'
     config:
       transient: false
       materialized: table
       schema: '{{ var("SH_TRS") }}'
-      alias: DIM_CUSTOMER
-      unique_key: DIM_CUSTOMER
-      query_tag: dbt_trs_DIM_CUSTOMER
+      alias: DIM_CUSTOMER_TRS
+      unique_key: DIM_CUSTOMER_TRS
+      query_tag: dbt_trs_DIM_CUSTOMER_TRS
     meta:
       primary key:
-        - C_CUSTKEY
-        - C_NAME
+        - CUSTOMER_KEY
+        - CUSTOMER_NAME
+        - CUSTOMER_ADDRESS
     columns:
-      - name: C_CUSTKEY
-        description: Customer account balance
+      - name: CUSTOMER_KEY
+        description: Customer Key
         tests: 
           - not_null
-      - name: C_NAME
-        description: Customer adress
+      - name: CUSTOMER_NAME
+        description: Customer Name
         tests: 
           - not_null
-      - name: PK_DIM_CUSTOMER
+      - name: CUSTOMER_ADDRESS
+        description: Customer Adress
+        tests: 
+          - not_null    
+      - name: PK_DIM_CUSTOMER_TRS
         tests: 
           - not_null
           - unique
-      - name: C_MKTSEGMENT
-        description: Customer Market segment
-      - name: C_COMMENT
-        description: Customer Comment
-      - name: C_ACCTBAL
-      - name: C_ADDRESS 
-      - name: C_NATIONKEY
-      - name: C_PHONE 
+      - name: CUSTOMER_PHONE
+        description: Customer Phone
+      - name: NATION
+        description: Customer Nation
+      - name: REGION
+      - name: MARKET_SEGMENT 
 
   - name: trs_DIM_LINEITEM
     description: '{{ doc("DIM_LINEITEM_TRS")}}'
@@ -49,6 +52,8 @@ models:
       primary key:
         - L_ORDERKEY
         - L_PARTKEY
+        - L_SUPPKEY
+        - L_LINENUMBER
     columns:
       - name: L_ORDERKEY
         description: Line order key
@@ -58,12 +63,14 @@ models:
         description: Line Part key
         tests: 
           - not_null
+      - name: PROFIT
+        description: Line Supplier Key
+        tests: 
+          - not_null    
       - name: PK_DIM_LINEITEM_TRS
         tests: 
           - not_null
           - unique
-      - name: L_SUPPKEY
-        description: Customer Market segment
       - name: L_LINENUMBER
         description: Customer Comment
       - name: L_QUANTITY
@@ -72,4 +79,4 @@ models:
       - name: L_TAX 
       - name: FINAL_PRICE 
       - name: TOTAL_TAX
-      - name: PROFIT    
+    
