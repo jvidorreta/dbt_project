@@ -15,7 +15,7 @@ STG_PROFIT as (
 FINAL AS (
     select *
     ,{{ dbt_utils.surrogate_key(['ORDER_KEY','L_LINENUMBER','PROFIT']) }} as PK_FACT_PROFIT_BUS
-    from STG_ORDERS
+    from STG_PROFIT
 )
 
 

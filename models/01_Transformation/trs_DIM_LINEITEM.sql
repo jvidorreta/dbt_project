@@ -27,6 +27,7 @@ STG_LINEITEM_ADD as (
     ,A.L_EXTENDEDPRICE
     ,A.L_DISCOUNT
     ,A.L_TAX
+    ,A.L_SHIPINSTRUCT AS SHIP_INSTRUCT
     
 
    from STG_LINEITEM A, STG_PART B
@@ -37,7 +38,7 @@ STG_LINEITEM_ADD as (
 --############# FINAL ##############
 FINAL as (
     SELECT * 
-    ,{{ dbt_utils.surrogate_key(['ORDER_KEY','PART_KEY']) }} as PK_DIM_LINEITEM_TRS
+    ,{{ dbt_utils.surrogate_key(['ORDER_KEY','PART_KEY','SUPP_KEY','L_LINENUMBER']) }} as PK_DIM_LINEITEM_TRS
     FROM STG_LINEITEM_ADD    
 )
 

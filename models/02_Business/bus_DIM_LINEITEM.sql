@@ -14,7 +14,7 @@ STG_LINEITEM as (
 
 FINAL AS (
     select *
-    ,{{ dbt_utils.surrogate_key(['ORDER_KEY','PART_KEY']) }} as PK_DIM_LINEITEM_BUS
+    ,{{ dbt_utils.surrogate_key(['ORDER_KEY','PART_KEY','SUPP_KEY','L_LINENUMBER']) }} as PK_DIM_LINEITEM_BUS
     from STG_LINEITEM
 )
 
